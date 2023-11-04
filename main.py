@@ -4,7 +4,6 @@ from bd import BD
 
 # Classe principal do programa
 interface = Interface()
-banco = BD("catalogoFilmes.db")
 
 opcao = ""
 while opcao != 0:

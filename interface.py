@@ -1,10 +1,11 @@
 import os
-
+from bd import BD
 # Classe para interface do usuário do programa
+
 class Interface:
     # Construtor
     def __init__(self):
-        pass
+        self.banco = BD("catalogoFilmes.db")
 
     def logotipo(self):
         print("============================")
@@ -51,14 +52,28 @@ class Interface:
 
         print("Insira os dados do filme:")
         print("(campos com * são obrigatórios)")
+        print()
 
-        titulo = self.solicitaValor('Digite o título: ', 'texto', False)
-        genero = self.solicitaValor('Digite o gênero: ', 'texto', False)
+        titulo = self.solicitaValor('Digite o título*: ', 'texto', False)
+        genero = self.solicitaValor('Digite o gênero*: ', 'texto', False)
         duracao = self.solicitaValor('Digite a duração: ', 'texto', True)
         diretor = self.solicitaValor('Digite o nome do diretor: ', 'texto', True)
         estudio = self.solicitaValor('Digite o nome do estúdio: ', 'texto', True)
         classificacao = self.solicitaValor('Digite a classificação: ', 'texto', True)
         ano = self.solicitaValor('Digite o ano: ', 'numero', True)
+
+        # Armazena os valores no banco de dados!
+        valores = {
+            "titulo": titulo,
+            "genero": genero,
+            "duracao": duracao,
+            "diretor": diretor,
+            "estudio": estudio,
+            "classificacao": classificacao,
+            "ano": ano
+        }
+
+        self.banco.inserir('filmes', valores)
 
     # Solicita um valor do usuário e valida ele.
     # return valorDigitado
