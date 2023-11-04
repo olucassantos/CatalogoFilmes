@@ -32,3 +32,14 @@ class BD:
 
         for chave, valor in valores.items():
             sql += f"{chave},"
+
+        sql += ')'
+
+        for chave, valor in valores.items():
+            sql += f"{valor},"
+
+        print(sql)
+        # INSERT INTO filmes 
+        # (titulo,genero,duracao,diretor,estudio,
+        # classificacao,ano,)
+        # Sherek,Aventura,,,,,,,
